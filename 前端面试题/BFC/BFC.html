@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .inner {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    .fl {
+      float: left;
+    }
+    .hr {
+      height: 100px;
+    }
+    .outer {
+      overflow: hidden;
+      /* position: absolute; */
+    }
+
+    .outer1 {
+      width: 200px;
+    }
+    .mb100 {
+      margin-bottom: 100px;
+    }
+    .mt100 {
+      margin-top: 100px;
+    }
+    .inner1-box {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- 包含内部浮动 -->
+  <div class="outer">
+    <div class="inner fl"></div>
+  </div>
+  <div class="hr"></div>
+  <!-- 排除外部浮动 -->
+  <div class="outer1">
+    <div class="inner fl"></div>
+    <div style="clear: both;">排除外部浮动排除外部浮动排除外部浮动排除外部浮动排除外部浮动排除外部浮动</div>
+  </div>
+
+  <!-- margin 会重叠 -->
+  <div class="outer2">
+    <div class="inner mb100"></div>
+    <div class="inner1-box">
+      <div class="inner mt100"></div>
+    </div>
+  </div>
+</body>
+</html>

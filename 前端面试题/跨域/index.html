@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function getName(name) {
+    document.body.innerHTML = name
+  }
+  const scDom = document.createElement('script');
+  scDom.src="http://127.0.0.1:8889/api/getname?func=getName"
+  document.body.appendChild(scDom)
+  document.body.removeChild(scDom)
+</script>
+</html>
