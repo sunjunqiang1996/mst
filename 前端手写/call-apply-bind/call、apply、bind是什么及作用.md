@@ -28,7 +28,7 @@
 	1. this在构造函数当中，指向的是新创建的这个对象
 	1. call、apply、bind指向的是我们传入的这个对象
 
-
+视频地址：https://www.bilibili.com/video/BV1ZH4y1S7YG/?vd_source=e46930c75b1a49af929af7ae8772c6d3
 
 
 
