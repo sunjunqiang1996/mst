@@ -1,25 +1,48 @@
-  /*
-    计算一个数组连续子数组最大和我们可以使用动态规划的方法：
-    基本思想： 想要知道第i位为结尾的最大子数组和，就需要知道以第i-1位为结尾的最大子数组的和
-          如果第i-1位为结尾的最大子数组的和 大于0， 那么 第i位为结尾的最大子数组和 为 第i-1位为结尾的最大子数组的和加上第i位的数字
-    具体代码如下：
-  */
-  var maxSubArray = function(nums) {
-      // 首先需要的是：
-      // 1. 记录目前最大子数组和的一个参数： max
-      // 2. 目前扫描到的i结尾的最大子数组和： maxi
-      // 3. 目前扫描到的上一个 i - 1 最大子数组的和： maxi_1
-      let max = maxi_1 = nums[0]
-      for(let i = 1, len = nums.length; i < len; i++) {
-          if (maxi_1 > 0) {
-              maxi = maxi_1 + nums[i]
-          } else {
-              maxi = nums[i]
-          }
-          maxi_1 = maxi
-          max = Math.max(maxi, max)
-      }
-      return max
-  };
+function getSubArrayMaxNum(nums) {
+  let max = maxi_1 = nums[0]
+  for (let i = 1, len = nums.length; i < len; i++) {
+    let maxi = undefined
+    if (maxi_1 > 0) {
+      maxi = maxi_1 + nums[i]
+    } else {
+      maxi = nums[i]
+    }
+    maxi_1 = maxi
+    max = Math.max(max, maxi)
+  }
+  return max
+}
+// 1. 青蛙跳台阶问题
+/**
+ * 一只青蛙每一次可能会跳一节台阶，也有可能跳两节，跳到第n节台阶有多少种跳法
+ * [1, 2, 3, 5, ....]
+ */
+function qwttj(n) {
+  let numi_2 = 1, numi_1 = 2
+  // n节的可能性就是 numn_1 + numn_2
+  for (let i = 3; i <= n; i++) {
+    let numi = numi_2 + numi_1
+    numi_2 = numi_1
+    numi_1 = numi
+  }
+  return numi_1
+}
+// console.log(qwttj(5))
 
-  
+
+// 2. 斐波那契数列
+/**
+ * [1, 1, 2, 3, 5, 8,...]
+ */
+
+ function fbnq(n) {
+  let numi_2 = numi_1 = 1
+  // n节的可能性就是 numn_1 + numn_2
+  for (let i = 3; i <= n; i++) {
+    let numi = numi_2 + numi_1
+    numi_2 = numi_1
+    numi_1 = numi
+  }
+  return numi_1
+}
+console.log(fbnq(4))
