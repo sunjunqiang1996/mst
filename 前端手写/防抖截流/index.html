@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="btn" value="防抖按钮" type="button">
+  <input id="btn1" value="截流按钮" type="button">
+</body>
+<script>
+  // 实现防抖函数
+  Function.prototype.debounce = function(time = 3000) {
+    const thisFunc = this
+    let timer = null
+    return function() {
+      const args = Array.from(arguments)
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        thisFunc(...args)
+      }, time)
+    }
+  }
+  function sayName(name) {
+    console.log(name)
+  }
+  const debounceSayName = sayName.debounce(1000)
+  document.querySelector('#btn').addEventListener('click', function() {
+    debounceSayName('wwww')
+  })
+
+  // 实现截流函数
+  Function.prototype.throttle = function(time = 3000) {
+    const thisFunc = this
+    let timer = null
+    return function() {
+      if (timer) return
+      const args = Array.from(arguments)
+      thisFunc(...args)
+      timer = setTimeout(() => {
+        timer = null
+      }, time)
+    }
+  }
+  const throttleSayName = sayName.throttle(1000)
+  document.querySelector('#btn1').addEventListener('click', function() {
+    throttleSayName('wwww')
+  })
+</script>
+</html>
