@@ -1,69 +1,73 @@
-/**
- *  1. 利用flat进行处理
- */
-const arr = [1,2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]
-function flatFn(arr) {
-  return arr.flat(Infinity)
-}
-console.log('flatFn');
-console.log(flatFn(arr));
-/**
- * 2. 利用数组转为字符串， 再转成数组进行处理
- */
-
-function flatStringFn(arr) {
-  return arr.toString().split(',')
-}
-console.log('flatStringFn');
-console.log(flatStringFn(arr));
 
 /**
- * 3. 利用深度优先遍历的递归实现
+ * 利用flat进行处理
  */
-function flatDeepFn(arr) {
+const arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]
+function flatArray(nums) {
+  return nums.flat(Infinity)
+}
+
+console.log('flatArray');
+console.log(flatArray(arr));
+
+/**
+ * 利用数组转为字符串再转为数组进行处理, 仅适用于字符串
+ */
+
+function flatStringArray(nums) {
+  return nums.toString().split(',')
+}
+console.log('flatStringArray');
+console.log(flatStringArray(arr));
+
+/**
+ * 利用深度优先遍历的递归进行处理
+ */
+
+function flatDeepArray(nums) {
   const res = []
-  fn(arr)
-  function fn(arr1) {
-    for (let i = 0, len = arr1.length; i < len; i++) {
-      if (Array.isArray(arr1[i])) {
-        res.push(...flatDeepFn(arr1[i]))
+  function fn(arr) {
+    for (let i = 0, len = arr.length; i < len; i++) {
+      if (!Array.isArray(arr[i])) {
+        res.push(arr[i])
       } else {
-        res.push(arr1[i])
+        res.push(...flatDeepArray(arr[i]))
       }
     }
   }
+  fn(nums)
   return res
 }
-console.log('flatDeepFn');
-console.log(flatDeepFn(arr));
+console.log('flatDeepArray');
+console.log(flatDeepArray(arr));
 
 /**
- * 4. 利用reduce函数实现
+ * 利用reduce递归进行处理
  */
-function flatReduceFn(arr) {
-  function fn(arr1) {
-    return arr1.reduce((preVal, nowVal) => {
-      if (Array.isArray(nowVal)) {
-        preVal.push(...fn(nowVal))
-      } else {
-        preVal.push(nowVal)
-      }
-      return preVal
-    }, [])
-  }
-  return fn(arr)
+
+function flatReduceArray(nums) {
+  return nums.reduce((preVal, nowVal) => {
+    if (!Array.isArray(nowVal)) {
+      preVal.push(nowVal)
+    } else {
+      preVal.push(...flatReduceArray(nowVal))
+    }
+    return preVal
+  }, [])
 }
-console.log('flatReduceFn');
-console.log(flatReduceFn(arr));
+
+console.log('flatReduceArray');
+console.log(flatReduceArray(arr));
 
 /**
- * 5. 利用迭代实现
+ * 利用遍历进行处理
  */
-function flatWhileFn(arr) {
-  while(arr.some(Array.isArray)) {
-    arr = [].concat(...arr)
+
+function flatWhileArray(nums) {
+  while(nums.some(Array.isArray)) {
+    nums = [].concat(...nums)
   }
-  return arr
+  return nums
 }
-console.log('flatWhileFn');
-console.log(flatWhileFn(arr));
+console.log('flatWhileArray');
+console.log(flatWhileArray(arr));
