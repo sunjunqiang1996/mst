@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preload" src="./index.js" />
+  <!-- <link rel="prefetch" href="https://img.win3000.com/m00/d6/f0/39de3b0c924e419833db0c8aab402dd6.jpg"> -->
+  <script>
+    console.log('内联')
+  </script>
+</head>
+
+<body>
+  你好
+  <input id="btn" type="button" value="点我显示图片">
+</body>
+<script>
+  setTimeout(() => {
+    const scriptDom = document.createElement('script')
+    scriptDom.src = "./index.js"
+    document.body.appendChild(scriptDom)
+  }, 3000)
+  document.querySelector('#btn').addEventListener('click', () => {
+    const imgDom = new Image
+    imgDom.src = "https://img.win3000.com/m00/d6/f0/39de3b0c924e419833db0c8aab402dd6.jpg"
+    document.body.appendChild(imgDom)
+  })
+</script>
+
+</html>
