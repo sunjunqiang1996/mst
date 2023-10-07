@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="prefetch" as="script" href="./index1.js">
+  <link rel="prefetch" as="script" href="./index2.js">
+  <link rel="prefetch" as="script" href="./index3.js">
+  <link rel="prefetch" as="script" href="./index4.js">
+  <link rel="prefetch" as="script" href="./index5.js">
+  <link rel="prefetch" as="script" href="./index6.js">
+  <script src="./index.js"></script>
+  <script>
+    const originTime = Date.now()
+    while (true) {
+      const nowTime = Date.now()
+      if (nowTime - originTime > 7000) {
+        console.log('7s 等待完成')
+        break
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <input id="btn" type="button" value="btn">
+</body>
+<script>
+  document.querySelector('#btn').addEventListener('click', () => {
+    const scriptDom = document.createElement('script')
+    scriptDom.src = './index.js'
+    document.body.appendChild(scriptDom)
+  })
+</script>
+
+</html>

@@ -1,3 +1,1 @@
-// import name from './name.js'
-
-console.log('外部js');
+console.log('我是index.js')

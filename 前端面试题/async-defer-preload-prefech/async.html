@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script async src="./index.js"></script>
+  <!-- <script defer src="./defer.js"></script> -->
+  <script>
+    const originTime = Date.now()
+    while (true) {
+      const nowTime = Date.now()
+      if (nowTime - originTime > 7000) {
+        console.log('7s 等待完成')
+        break
+      }
+    }
+    // window.addEventListener('DOMContentLoaded', () => {
+    //   console.log('DOMContentLoad')
+    // })
+  </script>
+</head>
+
+<body>
+  11123
+</body>
+<script>
+  console.log('我是body之下的js文件');
+</script>
+
+</html>
